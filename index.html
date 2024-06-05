@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-digital-stopwatch-1861386-1575979.png" type="image/x-icon">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        width: 100%;
+        background-color: cadetblue;
+    }
+    button{
+        width:100px;
+        height: 30px;
+        border-radius: 10px;
+        margin: 19px 0px 5px 30px;
+    }
+    .container{
+        position: absolute;
+        top: 30%;
+        left: 38%;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 300px;
+        height: 350px;
+        background-color:black;
+        overflow: auto;
+    }
+    #intervalValue{
+        text-align: center;
+        color: rgb(216, 17, 94);
+        font-size: 50px;
+    }
+    h1{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        position: absolute;
+        top: 20%;
+        left:43%;
+    }
+    p{
+        color: rgb(120, 219, 26);
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+<body>
+    <h1>StopWatch</h1>
+    <div class="container">
+        <p id="intervalValue">0</p>
+        <button id="str"onclick="start()">Start</button>
+        <button id="stop"onclick="stop()">Stop</button>
+        <button id="show" onclick="show()">Show</button>
+        <button id="clear"onclick="clearText()">Clear</button>
+        <button id="restart"onclick="restart()">Restart</button> 
+        <div id="data"></div>
+    </div>
+   
+<script>
+   let btn1=document.getElementById("str");
+   let btn2=document.getElementById("stop");
+   let btn3=document.getElementById("clear");
+   let btn4=document.getElementById("restart");
+   let btn5=document.getElementById("show"); 
+   let intervalValue=document.getElementById("intervalValue");
+   let data=document.getElementById("data");
+    let begin=0;
+    let interval;
+    function start(){ 
+       interval= setInterval(()=>{
+       begin=begin+1;
+       intervalValue.innerText=begin;
+       },1000);
+    };
+    function stop(){
+        clearInterval(interval);
+    };
+    function restart(){
+        begin=0;
+        intervalValue.innerText=begin;
+        clearInterval(interval);
+    };
+    function show(){
+       const para=document.createElement("p");
+        para.innerText=`The stop time is ${begin}`;
+        data.append(para);
+    };
+    function clearText(){
+  data.innerHTML="";
+    };
+
+    
+</script>
+
+</body>
+</html>
